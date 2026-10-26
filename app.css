@@ -1,0 +1,37 @@
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.ft-grid { align-items: start; }
+.ft-timer { --mc: var(--accent); }
+.ft-timer[data-mode="short"] { --mc: var(--ok); }
+.ft-timer[data-mode="long"] { --mc: #8ea2ff; }
+[data-theme="light"] .ft-timer[data-mode="long"] { --mc: #4f63d9; }
+
+.ring-wrap { position: relative; width: min(300px, 78vw); aspect-ratio: 1; margin: 22px auto 18px; }
+.ring { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 10; }
+.ring-bg { stroke: var(--surface-3); }
+.ring-fg { stroke: var(--mc); stroke-linecap: round; transition: stroke-dashoffset 300ms linear, stroke var(--dur); }
+.ring-text { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+.time { font-size: clamp(46px, 13vw, 68px); font-weight: 700; letter-spacing: -.03em; font-variant-numeric: tabular-nums; line-height: 1; }
+.ft-controls { justify-content: center; }
+.ft-controls .btn.big { min-width: 150px; background: var(--mc); }
+.ft-timer.running .ring-fg { animation: ft-pulse 2.4s ease-in-out infinite; }
+@keyframes ft-pulse { 50% { opacity: .78; } }
+
+.est { width: 72px; }
+#addTask > label:not(.grow) { width: 72px; }
+#today { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
+#today .stat b { font-size: 21px; }
+.tasks { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.tasks li { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 10px; background: var(--surface-2); border: 1px solid var(--line); cursor: pointer; }
+.tasks li.active { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.tasks li.done .t-name { text-decoration: line-through; color: var(--text-3); }
+.tasks .t-name { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.tasks .t-count { font-variant-numeric: tabular-nums; color: var(--text-2); font-size: 12.5px; white-space: nowrap; }
+.tasks .t-del { color: var(--text-3); }
+.tasks .t-del:hover { color: var(--danger); }
+
+.week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; align-items: end; height: 110px; }
+.week .bar { display: grid; grid-template-rows: 1fr auto; height: 100%; text-align: center; gap: 4px; }
+.week .bar i { align-self: end; display: block; border-radius: 6px 6px 3px 3px; background: var(--accent); min-height: 3px; opacity: .85; }
+.week .bar.today i { opacity: 1; box-shadow: 0 0 14px -2px var(--accent); }
+.week .bar span { font-size: 11px; color: var(--text-3); }
